@@ -12,7 +12,7 @@ Built for people who actually carry their entire music library in their pocket. 
 
 Why MP3PLUS Audio Player?
 I was missing a lot of key features and used the principle: “If you want something done right, do it yourself", and i did.
-Most Cardputer's audio players hit a wall around 256–2,000 tracks, choke on Cyrillic filenames, or freeze up when you hit shuffle or scroll. MP3+ was engineered from the ground up to squeeze every last drop out of the ESP32-S3's 320 KB usable SRAM:
+Most Cardputer's audio players hit a wall around 256–2,000 tracks, choke on Cyrillic filenames, or freeze up when you hit shuffle or scroll. MP3+ was engineered from the ground up to squeeze every last drop out of the ESP32-S3's 320 KB usable SRAM: I tried my best!
 
 Up to 4,096 tracks per folder - filenames are indexed cleanly on microSD (/.mp3plus.idx) with a 16-slot RAM hot cache. Tested with ~1,000+ real tracks in a single directory with zero hiccups.
 0 ms Instant Shuffle (S) - non-destructive Fisher-Yates permutation in RAM. Turn it on to shuffle; turn it off to jump right back to your exact original track order without touching your files.
@@ -49,8 +49,12 @@ This project is 100% free and open-source — and always will be. Unfortunately,
 
 If MP3+ turned your Cardputer into your favorite pocket DAP, you can toss a coffee my way, or even commission custom features, bespoke boot animations, themes, or tailored firmware builds for a small fee. Feel free to ask.
 
-Donate / Support:
-Custom Dev & Commissions:Farbender@protonmail.com
+Donate / Support: 
+- USDT (TRC20): TF7kf8QxKoXrHq8ixnaYG5zDXBBuRP5FWb 
+- BTC: bc1qef8762lcc72zxz5w6kac4vztpjuw5vxlxaal5c
+
+
+Custom Dev & Commissions: Farbender@protonmail.com
 
 Credits & License:
 Powered by ESP32-audioI2S & M5Unified/M5GFX. Released under the GNU General Public License v3.0 (
