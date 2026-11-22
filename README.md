@@ -1,9 +1,8 @@
-
 <div align="center">
 
 MP3PLUS Audio Player for M5Stack Cardputer-Adv & Cardputer
 
-🇬🇧 English | 🇷🇺 Русский | 🇪🇸 Español
+<b>🇬🇧 English</b> | <a href="README.ru.md">🇷🇺 Русский</a> | <a href="README.es.md">🇪🇸 Español</a>
 
 License: GPL v3
 
