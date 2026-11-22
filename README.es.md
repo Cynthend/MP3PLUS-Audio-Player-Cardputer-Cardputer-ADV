@@ -1,4 +1,5 @@
 <div align="center">
+  
 MP3PLUS Reproductor de Audio para M5Stack Cardputer-Adv y Cardputer
 
 <a href="README.md">🇬🇧 English</a> |<a href="README.ru.md">🇷🇺 Русский</a> | 🇪🇸 Español
@@ -6,6 +7,8 @@ MP3PLUS Reproductor de Audio para M5Stack Cardputer-Adv y Cardputer
 License: GPL v3
 
 Hecho para quienes realmente llevan toda su biblioteca musical en el bolsillo - sin PSRAM, sin lag y sin excusas.
+
+</div>
 
 ¿Por qué otro reproductor?
 La mayoría de los reproductores para Cardputer se quedan cortos en 256–2.000 pistas, fallan con nombres UTF-8 o se congelan al activar el modo aleatorio. MP3+ exprime al máximo los 320 KB de SRAM utilizables del ESP32-S3:
@@ -60,6 +63,8 @@ Por desgracia, las facturas no se pagan solas 💀
 Si MP3+ convirtió tu Cardputer en tu reproductor favorito de bolsillo, puedes invitarme un café — o encargarme funciones personalizadas, animaciones de inicio, temas o compilaciones a medida por un precio accesible:
 
 Apoyar el proyecto:
+- USDT (TRC20): TF7kf8QxKoXrHq8ixnaYG5zDXBBuRP5FWb 
+- BTC: bc1qef8762lcc72zxz5w6kac4vztpjuw5vxlxaal5c
 
 Desarrollo a medida: Farbender@protonmail.com
 
