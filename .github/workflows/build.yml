@@ -1,0 +1,85 @@
+name: Build MP3PLUS Audio Player ADV (.bin for M5Launcher)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release tag (e.g. v1.0.0)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.platformio
+            .pio
+          key: pio-${{ runner.os }}-${{ hashFiles('platformio.ini') }}
+          restore-keys: |
+            pio-${{ runner.os }}-
+
+      - name: Install PlatformIO & esptool
+        run: |
+          pip install -U platformio esptool "click<8.2"
+          
+
+      - name: Build firmware (ESP32-S3 Cardputer-Adv)
+        run: |
+          pio run -e cardputer_adv
+
+      - name: Package M5Launcher app .bin & Full 0x0 merged .bin
+        run: |
+          mkdir -p release_bins
+          BUILD_DIR=".pio/build/cardputer_adv"
+
+          cp "${BUILD_DIR}/firmware.bin" "release_bins/MP3PLUS_Audio_Player_ADV_M5Launcher.bin"
+
+          python3 -m esptool --chip esp32s3 merge_bin \
+            -o "release_bins/MP3PLUS_Audio_Player_ADV_FULL_0x0.bin" \
+            --flash_mode dio --flash_freq 80m --flash_size 8MB \
+            0x0     "${BUILD_DIR}/bootloader.bin" \
+            0x8000  "${BUILD_DIR}/partitions.bin" \
+            0x10000 "${BUILD_DIR}/firmware.bin"
+
+          cd release_bins
+          sha256sum *.bin > SHA256SUMS.txt
+
+      - name: Upload .bin files as Workflow Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MP3PLUS_Audio_Player_ADV_Bins
+          path: release_bins/*
+
+      - name: Create GitHub Release (on tag or manual release_tag)
+        if: startsWith(github.ref, 'refs/tags/') || github.event.inputs.release_tag != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.release_tag != '' && github.event.inputs.release_tag || github.ref_name }}
+          name: "Build MP3PLUS Audio Player ADV ${{ github.event.inputs.release_tag != '' && github.event.inputs.release_tag || github.ref_name }}"
+          body: |
+            ### Prebuilt `.bin` files for M5Stack Cardputer-Adv
+            - **`MP3PLUS_Audio_Player_ADV_M5Launcher.bin`** — copy to microSD and install via **M5Launcher** (keeps M5Launcher intact).
+            - **`MP3PLUS_Audio_Player_ADV_FULL_0x0.bin`** — full standalone image for flashing at `0x0`.
+          files: |
+            release_bins/MP3PLUS_Audio_Player_ADV_M5Launcher.bin
+            release_bins/MP3PLUS_Audio_Player_ADV_FULL_0x0.bin
+            release_bins/
+            SHA256SUMS.txt
