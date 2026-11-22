@@ -57,6 +57,8 @@ G0 (сбоку)	Карманный режим: 1× Пауза · 2× След. �
 Не стесняйтесь спрашивать.
 
 Поддержать проект:
+- USDT (TRC20): TF7kf8QxKoXrHq8ixnaYG5zDXBBuRP5FWb 
+- BTC: bc1qef8762lcc72zxz5w6kac4vztpjuw5vxlxaal5c
 Заказать доработку: Farbender@protonmail.com
 Благодарности и лицензия:
 Работает на ESP32-audioI2S и M5Unified/M5GFX.
